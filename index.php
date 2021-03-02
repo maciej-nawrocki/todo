@@ -2,7 +2,16 @@
 require_once "db.php";
 $conn = mysqli_connect($host, $user, $pass, $db);
 mysqli_set_charset($conn, "utf8");
+
+// dodawanie zadania do bazy
+if(isset($_POST['title']))
+{
+    $title = $_POST['title'];
+    echo $title;
+    $sql = mysqli_query($conn, "INSERT INTO tasks (title) VALUES ('$title')");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
