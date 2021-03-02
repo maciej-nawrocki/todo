@@ -1,14 +1,14 @@
 <?php
 require_once "db.php";
 $conn = mysqli_connect($host, $user, $pass, $db);
-mysqli_set_charset($conn, "utf8");
+mysqli_set_charset($conn, "utf8") or die("Problemy z zapisem danych!");
 
 // dodawanie zadania do bazy
 if(isset($_POST['title']))
 {
     $title = $_POST['title'];
-    echo $title;
-    $sql = mysqli_query($conn, "INSERT INTO tasks (title) VALUES ('$title')");
+    $add = "INSERT INTO tasks (title) VALUES ('$title')";
+    $sql = mysqli_query($conn, $add);
 }
 ?>
 
@@ -31,31 +31,20 @@ if(isset($_POST['title']))
         </div>
         <div class="tasklist">
         <table>
-            <tr>
-                <td>
-                    <input type="checkbox" class="check-box"
-                    checked /></td>
-                <td>treść</td>
-                <td>data</td>
-                <td>edytuj</td>
-            </tr>
-           
-                <?php
-                    $d = "SELECT * FROM tasks";
-                    $result = mysqli_query($conn, $d) or die("Problemy z odczytem danych!");
-                    // $rows = mysqli_fetch_assoc($result);
-                    // echo $row[0];
-                    while($row = mysqli_fetch_assoc($result))
-                    {
-                        // var_dump($row['title']);
-                        echo '<tr><td><input type="checkbox" class="check-box"';
-                        if ($row['checked'] == 1) {echo 'checked';} 
-                        echo ' /></td>';
-                        echo '<td>'.$row['title'].'</td>';
-                        echo '<td>'.$row['date'].'</td>';
-                        echo '<td><a href="/edycja.php?id='.$row['id'].'">edytuj</a></td></tr>';
-                    }
-                    ?>
+            <?php
+                $d = "SELECT * FROM tasks";
+                $result = mysqli_query($conn, $d) or die("Problemy z odczytem danych!");
+                
+                while($row = mysqli_fetch_assoc($result))
+                {
+                echo '<tr><td><input type="checkbox" class="check-box"';
+                if ($row['checked'] == 1) {echo 'checked';} 
+                echo ' /></td>';
+                echo '<td>'.$row['title'].'</td>';
+                echo '<td>'.$row['date'].'</td>';
+                echo '<td><a href="/edycja.php?id='.$row['id'].'">edytuj</a></td></tr>';
+                }
+            ?>
                 
         </table>
 
