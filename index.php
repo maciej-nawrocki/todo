@@ -42,7 +42,7 @@ if(isset($_POST['title']))
                 echo ' /></td>';
                 echo '<td>'.$row['title'].'</td>';
                 echo '<td>'.$row['date'].'</td>';
-                echo '<td><a href="/edycja.php?id='.$row['id'].'">edytuj</a></td></tr>';
+                echo '<td><a href="/todo/edycja.php?id='.$row['id'].'">edytuj</a></td></tr>';
                 }
             ?>
                 
