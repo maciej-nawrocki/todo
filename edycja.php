@@ -35,7 +35,5 @@ if(isset($_GET['id']))
         </div>
         
     </div>
-
-
 </body>
 </html>
