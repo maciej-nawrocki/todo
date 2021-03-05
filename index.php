@@ -37,12 +37,14 @@ if(isset($_POST['title']))
                 
                 while($row = mysqli_fetch_assoc($result))
                 {
-                echo '<tr><td><input type="checkbox" class="check-box"';
-                if ($row['checked'] == 1) {echo 'checked';} 
-                echo ' /></td>';
+                echo '<tr><td><a href="/todo/zrobione.php?id='.$row['id'].'"><img src="./img/done.png" /></a></td>';
+                if($row['checked'] == "1"){
+                    echo '<td class="done">'.$row['title'].'</td>';
+                }else{
                 echo '<td>'.$row['title'].'</td>';
+                }
                 echo '<td>'.$row['date'].'</td>';
-                echo '<td><a href="/todo/edycja.php?id='.$row['id'].'">edytuj</a></td></tr>';
+                echo '<td><a href="/todo/edycja.php?id='.$row['id'].'"><img src="./img/edit.png" /></a></td></tr>';
                 }
             ?>
                 

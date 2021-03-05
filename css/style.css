@@ -8,7 +8,6 @@ body {
     padding: 0px;
     margin: 0px;
     text-align: center;
-    
 }
 
 .main{
@@ -45,5 +44,8 @@ table{
 td{
     border-bottom: 1px solid black;
     
-}   
+}
+.done{
+    text-decoration: line-through;   
+}
 tr:nth-child(even) {background-color: #f2f2f2;}
